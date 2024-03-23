@@ -5,7 +5,7 @@ import 'package:FootballApp/blocs/login_form_validation_bloc/login_form_validati
 class SignInWithEmailButton extends StatelessWidget {
   final LoginFormValidationBloc loginFormValidationBloc;
 
-  SignInWithEmailButton({this.loginFormValidationBloc});
+  SignInWithEmailButton({required this.loginFormValidationBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,9 @@ class SignInWithEmailButton extends StatelessWidget {
       width: 300,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-            primary: HexColor('6798B4')),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+          backgroundColor: HexColor('6798B4'),
+        ),
         onPressed: () {
           loginFormValidationBloc.signInWithValidate();
         },

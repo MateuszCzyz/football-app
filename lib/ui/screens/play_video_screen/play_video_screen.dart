@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 class PlayVideoPage extends StatefulWidget {
   final String videoFrame;
 
-  PlayVideoPage({this.videoFrame});
+  PlayVideoPage({required this.videoFrame});
   @override
   _PlayVideoPageState createState() => _PlayVideoPageState();
 }

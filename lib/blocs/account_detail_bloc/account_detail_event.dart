@@ -10,19 +10,19 @@ abstract class AccountDetailEvent extends Equatable {
 class ChangeAccountEmail extends AccountDetailEvent {
   final String email;
 
-  ChangeAccountEmail({this.email});
+  ChangeAccountEmail({required this.email});
 }
 
 class SetNewPassword extends AccountDetailEvent {
   final String password;
 
-  SetNewPassword({this.password});
+  SetNewPassword({required this.password});
 }
 
 class SetNewNickname extends AccountDetailEvent {
   final String nickname;
 
-  SetNewNickname({this.nickname});
+  SetNewNickname({required this.nickname});
 }
 
 class TakeCameraPhoto extends AccountDetailEvent {}

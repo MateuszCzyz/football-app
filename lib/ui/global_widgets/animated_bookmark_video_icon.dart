@@ -8,7 +8,11 @@ class AnimatedBookmarkVideoIcon extends StatefulWidget {
   final double iconSize;
   final Video video;
 
-  AnimatedBookmarkVideoIcon({this.iconColor, this.iconSize, this.video});
+  AnimatedBookmarkVideoIcon({
+    required this.iconColor,
+    required this.iconSize,
+    required this.video,
+  });
 
   @override
   _AnimatedBookmarkIconState createState() => _AnimatedBookmarkIconState();
@@ -16,8 +20,8 @@ class AnimatedBookmarkVideoIcon extends StatefulWidget {
 
 class _AnimatedBookmarkIconState extends State<AnimatedBookmarkVideoIcon>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _animation;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -89,7 +93,7 @@ class _AnimatedBookmarkIconState extends State<AnimatedBookmarkVideoIcon>
     if ((current is BookmarkVideoResult &&
             current.video.title == widget.video.title) ||
         (current is LoadingBookmarkVideo &&
-            current.video.title == widget.video.title)) {
+            current.video!.title == widget.video.title)) {
       return true;
     } else {
       return false;
@@ -100,7 +104,7 @@ class _AnimatedBookmarkIconState extends State<AnimatedBookmarkVideoIcon>
 class LoadingWidget extends StatelessWidget {
   final Color iconColor;
 
-  LoadingWidget({this.iconColor});
+  LoadingWidget({required this.iconColor});
 
   @override
   Widget build(BuildContext context) {

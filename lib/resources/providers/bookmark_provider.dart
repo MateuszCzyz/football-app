@@ -10,47 +10,47 @@ class BookmarkRepository {
   Box _videosBox = Hive.box('bookmarked_videos');
   Box _articlesDetailsBox = Hive.box('articles_details');
 
-  void addBookmarkArticle({Article article}) async {
+  void addBookmarkArticle({required Article article}) async {
     String _bookmarkedImagePath =
-        await _imageProvider.saveBookmarkedImage(article.image);
+        await _imageProvider.saveBookmarkedImage(article.image!);
     Map<dynamic, dynamic> _articleData = article.toMap();
     _articleData['image'] = _bookmarkedImagePath;
     _articlesBox.put(article.id, _articleData);
   }
 
-  void addBookmarkedArticleDetail({ArticleDetail articleDetail}) {
+  void addBookmarkedArticleDetail({required ArticleDetail articleDetail}) {
     _articlesDetailsBox.put(articleDetail.id, articleDetail.toMap());
   }
 
-  void addBookmarkVideo({Video video}) async {
+  void addBookmarkVideo({required Video video}) async {
     String _bookmarkedImagePath =
-        await _imageProvider.saveBookmarkedImage(video.image);
+        await _imageProvider.saveBookmarkedImage(video.image!);
     Map<dynamic, dynamic> _videoData = video.toMap();
     _videoData['image'] = _bookmarkedImagePath;
     _videosBox.put(video.title, _videoData);
   }
 
-  void removeBookmarkedVideo({Video video}) {
+  void removeBookmarkedVideo({required Video video}) {
     _videosBox.delete(video.title);
   }
 
-  void removeBookmarkedArticle({Article article}) {
+  void removeBookmarkedArticle({required Article article}) {
     _articlesBox.delete(article.id);
   }
 
-  void removeBookmarkedArticleDetail({String articleID}) {
+  void removeBookmarkedArticleDetail({required String articleID}) {
     _articlesDetailsBox.delete(articleID);
   }
 
-  bool isArticleBookmarked({String articleID}) {
+  bool isArticleBookmarked({required String articleID}) {
     return _articlesDetailsBox.containsKey(articleID);
   }
 
-  bool isVideoBookmarked({Video video}) {
+  bool isVideoBookmarked({required Video video}) {
     return _videosBox.containsKey(video.title);
   }
 
-  ArticleDetail getBookmarkedArticleDetail({String articleID}) {
+  ArticleDetail getBookmarkedArticleDetail({required String articleID}) {
     return ArticleDetail.fromMap(_articlesDetailsBox.get(articleID));
   }
 

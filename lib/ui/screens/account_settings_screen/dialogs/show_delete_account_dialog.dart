@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:FootballApp/blocs/account_detail_bloc/account_detail_bloc.dart';
 
-void showDeleteAccountDialog({BuildContext context}) {
+void showDeleteAccountDialog({required BuildContext context}) {
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -13,7 +13,9 @@ void showDeleteAccountDialog({BuildContext context}) {
                   onPressed: () {
                     BlocProvider.of<AccountDetailBloc>(context)
                         .add(DeleteAccount());
-                    Navigator.of(context)..pop()..pop();
+                    Navigator.of(context)
+                      ..pop()
+                      ..pop();
                   },
                   child: Text(
                     'Yes',

@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 class SecondRegisterPasswordInput extends StatelessWidget {
   final RegisterFormValidationBloc registerFormValidationBloc;
 
-  SecondRegisterPasswordInput({this.registerFormValidationBloc});
+  SecondRegisterPasswordInput({required this.registerFormValidationBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SecondRegisterPasswordInput extends StatelessWidget {
                         BorderSide(color: HexColor('DDDDDD'), width: 1)),
                 labelStyle: GoogleFonts.nunito(),
                 labelText: 'Repeat password',
-                errorText: snapshot.data,
+                errorText: snapshot.data as String?,
                 contentPadding: EdgeInsets.all(10),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(3),

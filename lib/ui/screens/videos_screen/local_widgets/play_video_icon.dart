@@ -5,13 +5,13 @@ class PlayVideoIcon extends StatefulWidget {
   final String videoFrame;
   @override
   _PlayVideoIconState createState() => _PlayVideoIconState();
-  PlayVideoIcon({this.videoFrame});
+  PlayVideoIcon({required this.videoFrame});
 }
 
 class _PlayVideoIconState extends State<PlayVideoIcon>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _animation;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
   bool _absorbIcon = false;
 
   @override

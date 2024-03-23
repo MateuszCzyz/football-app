@@ -1,9 +1,9 @@
 class Video {
-  String title;
-  String competition;
-  String image;
-  String date;
-  String url;
+  String? title;
+  String? competition;
+  String? image;
+  String? date;
+  String? url;
 
   Video({this.title, this.competition, this.image, this.date, this.url});
 

@@ -10,5 +10,5 @@ abstract class VideoEvent extends Equatable {
 class FetchVideos extends VideoEvent {
   final String leagueLabel;
 
-  FetchVideos({this.leagueLabel});
+  FetchVideos({required this.leagueLabel});
 }

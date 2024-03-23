@@ -1,5 +1,4 @@
 import 'package:FootballApp/blocs/bookmark_article_bloc/bookmark_article_bloc.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:FootballApp/models/article_detail.dart';
@@ -13,7 +12,7 @@ import 'dart:io';
 class BookmarkArticleDetailScreen extends StatefulWidget {
   final Article article;
 
-  BookmarkArticleDetailScreen({this.article});
+  BookmarkArticleDetailScreen({required this.article});
 
   @override
   State<BookmarkArticleDetailScreen> createState() =>
@@ -22,13 +21,13 @@ class BookmarkArticleDetailScreen extends StatefulWidget {
 
 class _BookmarkArticleDetailScreenState
     extends State<BookmarkArticleDetailScreen> {
-  ArticleDetail articleDetail;
+  late ArticleDetail articleDetail;
 
   @override
   void initState() {
     super.initState();
     articleDetail = BlocProvider.of<BookmarkArticleBloc>(context)
-        .getBookmarkedArticleDetail(articleID: widget.article.id);
+        .getBookmarkedArticleDetail(articleID: widget.article.id!);
   }
 
   @override
@@ -45,11 +44,11 @@ class _BookmarkArticleDetailScreenState
         SliverList(
             delegate: SliverChildListDelegate([
           ArticleContent(
-              articleList: articleDetail.content,
-              numberOfLines: articleDetail.content.length,
-              title: widget.article.title),
+              articleList: articleDetail.content!,
+              numberOfLines: articleDetail.content!.length,
+              title: widget.article.title!),
           AdditionalInformation(
-              author: articleDetail.author, date: widget.article.date),
+              author: articleDetail.author!, date: widget.article.date!),
         ]))
       ],
     )));
@@ -64,8 +63,8 @@ class _BookmarkArticleDetailScreenState
             children: [
               ShareIcon(
                 iconColor: Colors.white,
-                shareTitle: widget.article.title,
-                shareURL: widget.article.url,
+                shareTitle: widget.article.title!,
+                shareURL: widget.article.url!,
               ),
               SizedBox(width: 3),
               AnimatedBookmarkArticleIcon(
@@ -81,10 +80,14 @@ class _BookmarkArticleDetailScreenState
           )),
       background: Container(
         decoration: BoxDecoration(
-            color: Colors.grey[100],
-            image: DecorationImage(
-                fit: BoxFit.fitHeight,
-                image: FileImage(File(widget.article.image)))),
+          color: Colors.grey[100],
+          image: DecorationImage(
+            fit: BoxFit.fitHeight,
+            image: FileImage(
+              File(widget.article.image!),
+            ),
+          ),
+        ),
       ),
     );
   }

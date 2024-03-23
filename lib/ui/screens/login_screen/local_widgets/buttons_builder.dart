@@ -13,12 +13,13 @@ class ButtonsBuilder extends StatelessWidget {
   final FocusNode emailFocusNode;
   final FocusNode passwordFocusNode;
 
-  ButtonsBuilder(
-      {this.loginFormValidationBloc,
-      this.emailTextEditingController,
-      this.passwordTextEditingController,
-      this.emailFocusNode,
-      this.passwordFocusNode});
+  ButtonsBuilder({
+    required this.loginFormValidationBloc,
+    required this.emailTextEditingController,
+    required this.passwordTextEditingController,
+    required this.emailFocusNode,
+    required this.passwordFocusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,12 @@ class ButtonsBuilder extends StatelessWidget {
               loginFormValidationBloc: loginFormValidationBloc,
             ),
             CreateAccountButton(
-                emailFocusNode: emailFocusNode,
-                passwordFocusNode: passwordFocusNode,
-                emailTextEditingController: emailTextEditingController,
-                passwordTextEditingController: passwordTextEditingController,
-                loginFormValidationBloc: loginFormValidationBloc),
+              emailFocusNode: emailFocusNode,
+              passwordFocusNode: passwordFocusNode,
+              emailTextEditingController: emailTextEditingController,
+              passwordTextEditingController: passwordTextEditingController,
+              loginFormValidationBloc: loginFormValidationBloc,
+            ),
             SignInWithGoogleButton()
           ],
         ),

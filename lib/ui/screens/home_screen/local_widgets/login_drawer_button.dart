@@ -9,15 +9,17 @@ class LoginDrawerButton extends StatelessWidget {
       width: 250,
       child: Padding(
         padding: EdgeInsets.all(15),
-        child: RaisedButton(
-          shape: OutlineInputBorder(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: HexColor('6798B4'), // Button color
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide.none),
+            ),
+          ),
           onPressed: () {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => LoginPage()));
           },
-          color: HexColor('6798B4'),
           child: Text(
             'Sign in',
             style: TextStyle(color: Colors.white),

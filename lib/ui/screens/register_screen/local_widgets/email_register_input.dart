@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 class EmailRegisterInput extends StatelessWidget {
   final RegisterFormValidationBloc registerFormValidationBloc;
 
-  EmailRegisterInput({this.registerFormValidationBloc});
+  EmailRegisterInput({required this.registerFormValidationBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class EmailRegisterInput extends StatelessWidget {
                 labelStyle: GoogleFonts.nunito(),
                 labelText: 'Email',
                 contentPadding: EdgeInsets.all(10),
-                errorText: snapshot.data,
+                errorText: snapshot.data as String?,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(3),
                 )),

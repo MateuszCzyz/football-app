@@ -6,7 +6,10 @@ class RegisterNavBar extends StatelessWidget {
   final String title;
   final String description;
 
-  RegisterNavBar({this.title, this.description});
+  RegisterNavBar({
+    required this.title,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +32,11 @@ class RegisterNavBar extends StatelessWidget {
         ],
       ),
       decoration: BoxDecoration(
-          color: HexColor('6798B4'),
-          borderRadius: BorderRadius.only(bottomRight: Radius.circular(90))),
+        color: HexColor('6798B4'),
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(90),
+        ),
+      ),
     );
   }
 }

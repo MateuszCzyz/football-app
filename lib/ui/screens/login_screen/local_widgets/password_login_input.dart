@@ -8,10 +8,11 @@ class PasswordLoginInput extends StatelessWidget {
   final LoginFormValidationBloc loginFormValidationBloc;
   final FocusNode passwordFocusNode;
 
-  PasswordLoginInput(
-      {this.loginFormValidationBloc,
-      this.passwordTextEditingController,
-      this.passwordFocusNode});
+  PasswordLoginInput({
+    required this.loginFormValidationBloc,
+    required this.passwordTextEditingController,
+    required this.passwordFocusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +27,24 @@ class PasswordLoginInput extends StatelessWidget {
             controller: passwordTextEditingController,
             obscureText: true,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: HexColor('DDDDDD'), width: 1)),
-                labelStyle: GoogleFonts.nunito(),
-                labelText: 'Password',
-                errorText: snapshot.data,
-                contentPadding: EdgeInsets.all(10),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(3),
-                    borderSide:
-                        BorderSide(width: 0.5, color: HexColor('FBFBFB')))),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: HexColor('DDDDDD'),
+                  width: 1,
+                ),
+              ),
+              labelStyle: GoogleFonts.nunito(),
+              labelText: 'Password',
+              errorText: snapshot.data as String?,
+              contentPadding: EdgeInsets.all(10),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(3),
+                borderSide: BorderSide(
+                  width: 0.5,
+                  color: HexColor('FBFBFB'),
+                ),
+              ),
+            ),
             onChanged: (value) {
               loginFormValidationBloc.setPasswordValue(value);
             },

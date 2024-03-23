@@ -1,4 +1,4 @@
-String getLeaguesImage({String leagueLabel}) {
+String getLeaguesImage({String? leagueLabel}) {
   switch (leagueLabel) {
     case 'ALL LEAGUES':
       return 'assets/images/world.svg';
@@ -21,6 +21,6 @@ String getLeaguesImage({String leagueLabel}) {
     case 'CHAMPIONS LEAGUE':
       return 'assets/images/uefa.svg';
     default:
-      return null;
+      return '';
   }
 }

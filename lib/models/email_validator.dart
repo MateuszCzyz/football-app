@@ -8,7 +8,7 @@ class Email extends FormzInput<String, String> {
       r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$');
 
   @override
-  String validator(String value) {
+  String? validator(String value) {
     if (value.isNotEmpty) {
       if (value.length >= 6) {
         if (_emailRegExp.hasMatch(value)) {

@@ -12,7 +12,7 @@ import 'package:FootballApp/utils/calculate_time.dart';
 class SingleVideo extends StatelessWidget {
   final Video video;
 
-  SingleVideo({this.video});
+  SingleVideo({required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class SingleVideo extends StatelessWidget {
 class VideoImage extends StatelessWidget {
   final Video video;
 
-  VideoImage({this.video});
+  VideoImage({required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +70,11 @@ class VideoImage extends StatelessWidget {
             image: DecorationImage(
                 fit: BoxFit.fitWidth,
                 image: CachedNetworkImageProvider(
-                  video.image,
+                  video.image!,
                 ))),
         child: Center(
             child: PlayVideoIcon(
-          videoFrame: video.url,
+          videoFrame: video.url!,
         )));
   }
 }
@@ -82,7 +82,7 @@ class VideoImage extends StatelessWidget {
 class TimeAndIconsVideo extends StatelessWidget {
   final Video video;
 
-  TimeAndIconsVideo({this.video});
+  TimeAndIconsVideo({required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -93,14 +93,14 @@ class TimeAndIconsVideo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TimeWidget(
-            timeSincePublished: videoTime['timeSincePublished'],
+            timeSincePublished: videoTime['timeSincePublished']!,
             color: '888888',
           ),
           Row(
             children: [
               ShareIcon(
                 shareURL: getUrlFromString(content: video.url),
-                shareTitle: video.title,
+                shareTitle: video.title!,
                 iconColor: Colors.grey.shade600,
               ),
               SizedBox(width: 5),
@@ -117,7 +117,7 @@ class TimeAndIconsVideo extends StatelessWidget {
 class MatchInformation extends StatelessWidget {
   final Video video;
 
-  MatchInformation({this.video});
+  MatchInformation({required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -129,16 +129,16 @@ class MatchInformation extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(video.title,
+              Text(video.title!,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText1
+                      .bodyText1!
                       .copyWith(fontSize: 15, fontWeight: FontWeight.w600)),
               Text(
-                video.competition,
+                video.competition!,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText1
+                    .bodyText1!
                     .copyWith(color: Colors.black45, fontSize: 12),
               ),
             ],

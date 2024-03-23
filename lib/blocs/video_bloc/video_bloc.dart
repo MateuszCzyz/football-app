@@ -12,7 +12,7 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
   final VideoRepository _videoRepository;
   final StreamController<String> _currentSelectedLeagueStream;
   String _currentSelectedLeague;
-  VideoBloc({VideoRepository videoRepository})
+  VideoBloc({required VideoRepository videoRepository})
       : _videoRepository = videoRepository,
         _currentSelectedLeagueStream = StreamController()
           ..add(videoRepository.leagues[0]),

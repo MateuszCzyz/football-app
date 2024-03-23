@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 class EmailInput extends StatelessWidget {
   final AccountDetailInputBloc accountDetailInputBloc;
 
-  EmailInput({this.accountDetailInputBloc});
+  EmailInput({required this.accountDetailInputBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class EmailInput extends StatelessWidget {
                 labelStyle: GoogleFonts.nunito(),
                 labelText: 'Email',
                 contentPadding: EdgeInsets.all(10),
-                errorText: snapshot.data,
+                errorText: snapshot.data as String?,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(3),
                 )),

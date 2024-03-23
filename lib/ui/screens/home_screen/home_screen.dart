@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             ),
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
-                  border: Border(top: BorderSide(color: Colors.grey[100]))),
+                  border: Border(top: BorderSide(color: Colors.grey[100]!))),
               child: TabBar(
                 indicatorColor: HexColor('6798B4'),
                 labelColor: HexColor('6798B4'),
@@ -43,7 +43,9 @@ class HomePage extends StatelessWidget {
                       icon: Icon(
                     Icons.play_circle_fill_rounded,
                   )),
-                  Tab(icon: Icon(Icons.bookmark)),
+                  Tab(
+                    icon: Icon(Icons.bookmark),
+                  ),
                 ],
               ),
             )),

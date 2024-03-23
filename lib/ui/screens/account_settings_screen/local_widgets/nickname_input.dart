@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 class NicknameInput extends StatelessWidget {
   final AccountDetailInputBloc accountDetailInputBloc;
 
-  NicknameInput({this.accountDetailInputBloc});
+  NicknameInput({required this.accountDetailInputBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class NicknameInput extends StatelessWidget {
                 labelStyle: GoogleFonts.nunito(),
                 labelText: 'New nickname',
                 contentPadding: EdgeInsets.all(10),
-                errorText: snapshot.data,
+                errorText: snapshot.data as String?,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(3),
                 )),

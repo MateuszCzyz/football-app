@@ -1,6 +1,5 @@
 import 'package:FootballApp/blocs/article_detail_bloc/article_detail_bloc.dart';
 import 'package:FootballApp/blocs/authentication_bloc/authentication_bloc.dart';
-import 'package:FootballApp/models/article_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +9,7 @@ import 'package:FootballApp/models/firestore_user.dart';
 class CommentsStream extends StatelessWidget {
   final Stream<QuerySnapshot> commentsStream;
   int index;
-  CommentsStream({this.commentsStream}) : index = 0;
+  CommentsStream({required this.commentsStream}) : index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +31,14 @@ class CommentsStream extends StatelessWidget {
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.hasData) {
-                          if (snapshot.data.docs.length > 0) {
+                          if (snapshot.data!.docs.length > 0) {
                             return Column(
-                              children: snapshot.data.docs.map((doc) {
+                              children: snapshot.data!.docs.map((doc) {
                                 index++;
                                 Map<String, dynamic> _data = doc.data();
                                 FirestoreUser _firestoreUser =
                                     _articleDetailBloc.getUserData(
-                                        users: future.data,
+                                        users: future.data!,
                                         userID: _data['id_user']);
                                 return CommentWidget(
                                   commentMessage: _data['content'],

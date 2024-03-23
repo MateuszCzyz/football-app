@@ -8,19 +8,19 @@ abstract class BookmarkVideoState extends Equatable {
 }
 
 class LoadingBookmarkVideo extends BookmarkVideoState {
-  final Video video;
+  final Video? video;
 
   LoadingBookmarkVideo({this.video});
 
   @override
-  List<Object> get props => [video];
+  List<Object> get props => video != null ? [video!] : [];
 }
 
 class BookmarkVideoResult extends BookmarkVideoState {
   final Video video;
   final bool isBookmarked;
 
-  BookmarkVideoResult({this.video, this.isBookmarked});
+  BookmarkVideoResult({required this.video, required this.isBookmarked});
 
   @override
   List<Object> get props => [video, isBookmarked];

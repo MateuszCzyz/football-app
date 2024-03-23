@@ -1,12 +1,19 @@
 class Article {
-  String id;
-  String title;
-  String image;
-  String slug;
-  String date;
-  String url;
+  String? id;
+  String? title;
+  String? image;
+  String? slug;
+  String? date;
+  String? url;
 
-  Article({this.id, this.title, this.date, this.image, this.slug, this.url});
+  Article({
+    required this.id,
+    required this.title,
+    required this.date,
+    required this.image,
+    required this.slug,
+    required this.url,
+  });
 
   Article.fromMap(Map<dynamic, dynamic> json) {
     this.id = json['id'];

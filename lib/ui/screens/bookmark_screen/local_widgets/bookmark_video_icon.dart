@@ -8,7 +8,11 @@ class BookmarkVideoIcon extends StatefulWidget {
   final double iconSize;
   final Video video;
 
-  BookmarkVideoIcon({this.iconColor, this.iconSize, this.video});
+  BookmarkVideoIcon({
+    required this.iconColor,
+    required this.iconSize,
+    required this.video,
+  });
 
   @override
   _BookmarkIconState createState() => _BookmarkIconState();

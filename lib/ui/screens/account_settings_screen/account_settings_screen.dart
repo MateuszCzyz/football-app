@@ -3,14 +3,13 @@ import 'local_widgets/account_data.dart';
 import 'local_widgets/account_settings_panel.dart';
 import 'package:FootballApp/ui/global_widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountSettingsScreen extends StatelessWidget {
   final User user;
 
-  AccountSettingsScreen({this.user});
+  AccountSettingsScreen({required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +31,10 @@ class BodyBuilder extends StatelessWidget {
                 physics: BouncingScrollPhysics(),
                 children: [
                   AccountData(
-                    user: state.user,
+                    user: state.user!,
                   ),
                   AccountSettingsPanel(
-                    user: state.user,
+                    user: state.user!,
                   )
                 ],
               );

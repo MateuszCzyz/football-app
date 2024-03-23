@@ -11,7 +11,7 @@ class SigInWithEmailAndPassword extends LoginEvent {
   final String email;
   final String password;
 
-  SigInWithEmailAndPassword({this.email, this.password});
+  SigInWithEmailAndPassword({required this.email, required this.password});
 }
 
 class SigInWithGoogle extends LoginEvent {}

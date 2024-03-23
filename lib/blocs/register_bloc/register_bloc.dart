@@ -14,12 +14,12 @@ part 'register_state.dart';
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final AuthenticationRepository authenticationRepository;
   final UsersRepository usersRepository;
-  final ImageRepository imageRepository;
-  RegisterBloc(
-      {this.authenticationRepository,
-      this.usersRepository,
-      this.imageRepository})
-      : super(RegisterStarted());
+  ImageRepository? imageRepository;
+  RegisterBloc({
+    required this.authenticationRepository,
+    required this.usersRepository,
+    this.imageRepository,
+  }) : super(RegisterStarted());
 
   @override
   Stream<RegisterState> mapEventToState(
@@ -31,19 +31,23 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     }
   }
 
-  Stream<RegisterState> mapCreateNewAccountToState(
-      {String email, String password}) async* {
+  Stream<RegisterState> mapCreateNewAccountToState({
+    required String email,
+    required String password,
+  }) async* {
     yield RegisterLoading();
     try {
       await authenticationRepository.createUserWithEmailAndPassoword(
           email: email, password: password);
       authenticationRepository.updateUserName(displayName: email.split('@')[0]);
       await authenticationRepository.reloadAccount();
-      User _currentUser = authenticationRepository.getCurrentUser();
-      await usersRepository.createUser(
-          userID: _currentUser.uid, userName: _currentUser.displayName);
-      authenticationRepository.signOut();
-      yield SuccessRegistration();
+      User? _currentUser = authenticationRepository.getCurrentUser();
+      if (_currentUser != null) {
+        await usersRepository.createUser(
+            userID: _currentUser.uid, userName: _currentUser.displayName!);
+        authenticationRepository.signOut();
+        yield SuccessRegistration();
+      }
     } on FirebaseAuthException catch (e) {
       String _errorMessage = getErrorMessage(e.code);
       yield FailureRegistration(errorMessage: _errorMessage);

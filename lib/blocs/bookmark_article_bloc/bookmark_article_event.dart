@@ -9,17 +9,17 @@ abstract class BookmarkArticleEvent extends Equatable {
 
 class FetchInitialArticleState extends BookmarkArticleEvent {
   final Article article;
-  FetchInitialArticleState({this.article});
+  FetchInitialArticleState({required this.article});
 }
 
 class AddBookmarkArticle extends BookmarkArticleEvent {
   final Article article;
 
-  AddBookmarkArticle({this.article});
+  AddBookmarkArticle({required this.article});
 }
 
 class RemoveBookmarkedArticle extends BookmarkArticleEvent {
   final Article article;
 
-  RemoveBookmarkedArticle({this.article});
+  RemoveBookmarkedArticle({required this.article});
 }

@@ -9,17 +9,17 @@ abstract class BookmarkVideoEvent extends Equatable {
 
 class FetchInitialVideoState extends BookmarkVideoEvent {
   final Video video;
-  FetchInitialVideoState({this.video});
+  FetchInitialVideoState({required this.video});
 }
 
 class AddBookmarkVideo extends BookmarkVideoEvent {
   final Video video;
 
-  AddBookmarkVideo({this.video});
+  AddBookmarkVideo({required this.video});
 }
 
 class RemoveBookmarkedVideo extends BookmarkVideoEvent {
   final Video video;
 
-  RemoveBookmarkedVideo({this.video});
+  RemoveBookmarkedVideo({required this.video});
 }

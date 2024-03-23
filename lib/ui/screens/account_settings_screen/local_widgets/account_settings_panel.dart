@@ -7,9 +7,9 @@ import 'settings_sections.dart';
 
 class AccountSettingsPanel extends StatelessWidget {
   final User user;
-  List<Widget> _settings;
+  late List<Widget> _settings;
 
-  AccountSettingsPanel({this.user}) {
+  AccountSettingsPanel({required this.user}) {
     _settings = [
       AccountSettingsSection(user: user),
       ImageSettingsSection(user: user),

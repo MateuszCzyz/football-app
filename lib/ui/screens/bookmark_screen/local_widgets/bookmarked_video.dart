@@ -14,7 +14,7 @@ import 'dart:io';
 class BookmarkVideo extends StatefulWidget {
   final Video video;
 
-  BookmarkVideo({this.video});
+  BookmarkVideo({required this.video});
 
   @override
   State<BookmarkVideo> createState() => _BookmarkVideoState();
@@ -67,25 +67,30 @@ class _BookmarkVideoState extends State<BookmarkVideo> {
 class VideoImage extends StatelessWidget {
   final Video video;
 
-  VideoImage({this.video});
+  VideoImage({required this.video});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 200,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-            color: Colors.grey,
-            boxShadow: [
-              BoxShadow(
-                  color: HexColor('D9D6D6'), blurRadius: 10, spreadRadius: 0)
-            ],
-            image: DecorationImage(
-                fit: BoxFit.fitWidth, image: FileImage(File(video.image)))),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+          color: Colors.grey,
+          boxShadow: [
+            BoxShadow(
+                color: HexColor('D9D6D6'), blurRadius: 10, spreadRadius: 0)
+          ],
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: FileImage(
+              File(video.image!),
+            ),
+          ),
+        ),
         child: Center(
             child: PlayVideoIcon(
-          videoFrame: video.url,
+          videoFrame: video.url!,
         )));
   }
 }
@@ -93,7 +98,7 @@ class VideoImage extends StatelessWidget {
 class TimeAndIconsVideo extends StatelessWidget {
   final Video video;
 
-  TimeAndIconsVideo({this.video});
+  TimeAndIconsVideo({required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -104,14 +109,14 @@ class TimeAndIconsVideo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TimeWidget(
-            timeSincePublished: videoTime['timeSincePublished'],
+            timeSincePublished: videoTime['timeSincePublished']!,
             color: '888888',
           ),
           Row(
             children: [
               ShareIcon(
                 shareURL: getUrlFromString(content: video.url),
-                shareTitle: video.title,
+                shareTitle: video.title!,
                 iconColor: Colors.grey.shade600,
               ),
               SizedBox(width: 5),
@@ -128,7 +133,7 @@ class TimeAndIconsVideo extends StatelessWidget {
 class MatchInformation extends StatelessWidget {
   final Video video;
 
-  MatchInformation({this.video});
+  MatchInformation({required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -140,16 +145,16 @@ class MatchInformation extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(video.title,
+              Text(video.title!,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText1
+                      .bodyText1!
                       .copyWith(fontSize: 15, fontWeight: FontWeight.w600)),
               Text(
-                video.competition,
+                video.competition!,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText1
+                    .bodyText1!
                     .copyWith(color: Colors.black45, fontSize: 12),
               ),
             ],

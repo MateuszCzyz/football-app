@@ -11,5 +11,5 @@ class FetchDetail extends ArticleDetailEvent {
   final String articleID;
   final String slug;
 
-  FetchDetail({this.slug, this.articleID});
+  FetchDetail({required this.slug, required this.articleID});
 }

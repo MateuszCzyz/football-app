@@ -5,17 +5,17 @@ import 'package:rxdart/rxdart.dart';
 class AccountDetailInputBloc {
   final FormRepository formRepository = FormRepository();
   final AccountDetailBloc accountDetailBloc;
-  BehaviorSubject<String> _nicknameInputValueStream;
-  BehaviorSubject<String> _emailInputValueStream;
-  BehaviorSubject<String> _passwordInputValueStream;
-  BehaviorSubject<String> _nicknameInputErrorStream;
-  BehaviorSubject<String> _emailInputErrorStream;
-  BehaviorSubject<String> _passwordInputErrorStream;
-  BehaviorSubject<bool> _emailInputIsSubmited;
-  BehaviorSubject<bool> _nicknameInputIsSubmited;
-  BehaviorSubject<bool> _passwordInputIsSubmited;
+  late BehaviorSubject<String> _nicknameInputValueStream;
+  late BehaviorSubject<String> _emailInputValueStream;
+  late BehaviorSubject<String> _passwordInputValueStream;
+  late BehaviorSubject<String> _nicknameInputErrorStream;
+  late BehaviorSubject<String> _emailInputErrorStream;
+  late BehaviorSubject<String> _passwordInputErrorStream;
+  late BehaviorSubject<bool> _emailInputIsSubmited;
+  late BehaviorSubject<bool> _nicknameInputIsSubmited;
+  late BehaviorSubject<bool> _passwordInputIsSubmited;
 
-  AccountDetailInputBloc({this.accountDetailBloc}) {
+  AccountDetailInputBloc({required this.accountDetailBloc}) {
     _nicknameInputValueStream = BehaviorSubject<String>();
     _emailInputValueStream = BehaviorSubject<String>();
     _passwordInputValueStream = BehaviorSubject<String>();
@@ -53,8 +53,8 @@ class AccountDetailInputBloc {
   Function(String) get setEmailValue => _emailInputValueStream.sink.add;
 
   submitPasswordInput() {
-    if (_passwordInputErrorStream?.value == null &&
-        _passwordInputValueStream.value?.isNotEmpty) {
+    if (_passwordInputErrorStream.value == null &&
+        _passwordInputValueStream.value.isNotEmpty) {
       accountDetailBloc
           .add(SetNewPassword(password: _passwordInputValueStream.value));
       _passwordInputIsSubmited.add(true);
@@ -63,7 +63,7 @@ class AccountDetailInputBloc {
 
   submitEmailInput() {
     if (_emailInputErrorStream?.value == null &&
-        _emailInputValueStream.value?.isNotEmpty) {
+        _emailInputValueStream.value.isNotEmpty) {
       accountDetailBloc
           .add(ChangeAccountEmail(email: _emailInputValueStream.value));
       _emailInputIsSubmited.add(true);
@@ -72,7 +72,7 @@ class AccountDetailInputBloc {
 
   submitNicknameInput() {
     if (_nicknameInputErrorStream?.value == null &&
-        _nicknameInputValueStream.value?.isNotEmpty) {
+        _nicknameInputValueStream.value.isNotEmpty) {
       accountDetailBloc
           .add(SetNewNickname(nickname: _nicknameInputValueStream.value));
       _nicknameInputIsSubmited.add(true);

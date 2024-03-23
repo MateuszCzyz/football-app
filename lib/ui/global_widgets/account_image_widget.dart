@@ -11,13 +11,14 @@ class AccountImage extends StatelessWidget {
   final double fontSize;
   final bool userHasImage;
 
-  AccountImage(
-      {this.displayName,
-      this.imagePath,
-      this.userHasImage,
-      this.fontSize,
-      @required this.heroTag,
-      @required this.size});
+  AccountImage({
+    required this.displayName,
+    required this.imagePath,
+    required this.userHasImage,
+    required this.fontSize,
+    required this.heroTag,
+    required this.size,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,11 @@ class CachedImageWidget extends StatelessWidget {
   final String imagePath;
   final double size;
 
-  CachedImageWidget({this.heroTag, this.imagePath, this.size});
+  CachedImageWidget({
+    required this.heroTag,
+    required this.imagePath,
+    required this.size,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +101,11 @@ class EmptyImageWidget extends StatelessWidget {
   final double fontSize;
   final double size;
 
-  EmptyImageWidget({this.displayName, this.fontSize, this.size});
+  EmptyImageWidget({
+    required this.displayName,
+    required this.fontSize,
+    required this.size,
+  });
 
   @override
   Widget build(BuildContext context) {

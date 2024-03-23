@@ -10,7 +10,7 @@ part 'bookmark_video_state.dart';
 
 class BookmarkVideoBloc extends Bloc<BookmarkVideoEvent, BookmarkVideoState> {
   BookmarkRepository _bookmarkRepository;
-  BookmarkVideoBloc({BookmarkRepository bookmarkRepository})
+  BookmarkVideoBloc({required BookmarkRepository bookmarkRepository})
       : _bookmarkRepository = bookmarkRepository,
         super(LoadingBookmarkVideo());
 
@@ -27,7 +27,8 @@ class BookmarkVideoBloc extends Bloc<BookmarkVideoEvent, BookmarkVideoState> {
     }
   }
 
-  Stream<BookmarkVideoState> mapAddBookmarkVideoToState({Video video}) async* {
+  Stream<BookmarkVideoState> mapAddBookmarkVideoToState(
+      {required Video video}) async* {
     yield LoadingBookmarkVideo(video: video);
     try {
       _bookmarkRepository.addBookmarkVideo(video: video);
@@ -38,7 +39,7 @@ class BookmarkVideoBloc extends Bloc<BookmarkVideoEvent, BookmarkVideoState> {
   }
 
   Stream<BookmarkVideoState> mapRemoveBookmarkedVideoToState(
-      {Video video}) async* {
+      {required Video video}) async* {
     yield LoadingBookmarkVideo(video: video);
     try {
       _bookmarkRepository.removeBookmarkedVideo(video: video);
@@ -49,7 +50,7 @@ class BookmarkVideoBloc extends Bloc<BookmarkVideoEvent, BookmarkVideoState> {
   }
 
   Stream<BookmarkVideoState> mapFetchInitialVideoStateToState(
-      {Video video}) async* {
+      {required Video video}) async* {
     yield LoadingBookmarkVideo(video: video);
     bool _isBookmarked = _bookmarkRepository.isVideoBookmarked(video: video);
     yield BookmarkVideoResult(video: video, isBookmarked: _isBookmarked);

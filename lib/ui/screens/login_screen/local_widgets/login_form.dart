@@ -14,10 +14,10 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  TextEditingController _emailTextEditingController;
-  TextEditingController _passwordTextEditingController;
-  FocusNode _emailFocusNode;
-  FocusNode _passwordFocusNode;
+  late TextEditingController _emailTextEditingController;
+  late TextEditingController _passwordTextEditingController;
+  late FocusNode _emailFocusNode;
+  late FocusNode _passwordFocusNode;
   GlobalKey _formKey = GlobalKey<FormState>();
 
   @override

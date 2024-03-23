@@ -18,7 +18,10 @@ class UsersRepository {
     return _users;
   }
 
-  FirestoreUser getUserData({List<FirestoreUser> users, String userID}) {
+  FirestoreUser getUserData({
+    required List<FirestoreUser> users,
+    required String userID,
+  }) {
     return users.firstWhere((_firestoreUser) {
       if (_firestoreUser.userID == userID)
         return true;
@@ -27,7 +30,7 @@ class UsersRepository {
     });
   }
 
-  Future<String> getUserDocumentID({String userID}) async {
+  Future<String> getUserDocumentID({required String userID}) async {
     QuerySnapshot _querySnapshot = await _firestore
         .collection('users')
         .where('id_user', isEqualTo: userID)
@@ -35,7 +38,7 @@ class UsersRepository {
     return _querySnapshot.docs[0].id;
   }
 
-  Future<bool> userExists({String userID}) async {
+  Future<bool> userExists({required String userID}) async {
     try {
       await getUserDocumentID(userID: userID);
       return true;
@@ -44,7 +47,10 @@ class UsersRepository {
     }
   }
 
-  Future<void> updateUserPhoto({String userID, String newImagePath}) async {
+  Future<void> updateUserPhoto({
+    required String userID,
+    required String newImagePath,
+  }) async {
     String docID = await getUserDocumentID(userID: userID);
     await _firestore
         .collection('users')
@@ -52,7 +58,10 @@ class UsersRepository {
         .update({'image_path': newImagePath, 'user_has_image': true});
   }
 
-  Future<void> updateUserName({String userID, String newUserName}) async {
+  Future<void> updateUserName({
+    required String userID,
+    required String newUserName,
+  }) async {
     String docID = await getUserDocumentID(userID: userID);
     await _firestore
         .collection('users')
@@ -60,7 +69,7 @@ class UsersRepository {
         .update({'user_name': newUserName});
   }
 
-  Future<void> removeUserPhoto({String userID}) async {
+  Future<void> removeUserPhoto({required String userID}) async {
     String docID = await getUserDocumentID(userID: userID);
     await _firestore
         .collection('users')
@@ -68,12 +77,15 @@ class UsersRepository {
         .update({'image_path': null, 'user_has_image': false});
   }
 
-  Future<void> removeUser({String userID}) async {
+  Future<void> removeUser({required String userID}) async {
     String docID = await getUserDocumentID(userID: userID);
     await _firestore.collection('users').doc(docID).delete();
   }
 
-  Future<void> createUser({String userID, String userName}) async {
+  Future<void> createUser({
+    required String userID,
+    required String userName,
+  }) async {
     await _firestore.collection('users').add({
       'id_user': userID,
       'image_path': null,

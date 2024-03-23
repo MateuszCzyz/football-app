@@ -5,15 +5,15 @@ import 'package:rxdart/rxdart.dart';
 class RegisterFormValidationBloc {
   final FormRepository _formRepository = FormRepository();
   final RegisterBloc registerBloc;
-  BehaviorSubject<String> _emailErrorStream;
-  BehaviorSubject<String> _passwordErrorStream;
-  BehaviorSubject<String> _secondPasswordErrorStream;
-  BehaviorSubject<String> _emailValueStream;
-  BehaviorSubject<String> _passwordValueStream;
-  BehaviorSubject<String> _secondPasswordValueStream;
-  BehaviorSubject<bool> _registerFormValidation;
+  late BehaviorSubject<String> _emailErrorStream;
+  late BehaviorSubject<String> _passwordErrorStream;
+  late BehaviorSubject<String> _secondPasswordErrorStream;
+  late BehaviorSubject<String> _emailValueStream;
+  late BehaviorSubject<String> _passwordValueStream;
+  late BehaviorSubject<String> _secondPasswordValueStream;
+  late BehaviorSubject<bool> _registerFormValidation;
 
-  RegisterFormValidationBloc({this.registerBloc}) {
+  RegisterFormValidationBloc({required this.registerBloc}) {
     _emailErrorStream = BehaviorSubject<String>();
     _passwordErrorStream = BehaviorSubject<String>();
     _secondPasswordErrorStream = BehaviorSubject<String>();

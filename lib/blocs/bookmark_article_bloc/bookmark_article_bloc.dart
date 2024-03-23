@@ -14,10 +14,10 @@ class BookmarkArticleBloc
     extends Bloc<BookmarkArticleEvent, BookmarkArticleState> {
   ArticleRepository _articleRepository;
   BookmarkRepository _bookmarkRepository;
-  BookmarkArticleBloc(
-      {ArticleRepository articleRepository,
-      BookmarkRepository bookmarkRepository})
-      : _articleRepository = articleRepository,
+  BookmarkArticleBloc({
+    required ArticleRepository articleRepository,
+    required BookmarkRepository bookmarkRepository,
+  })  : _articleRepository = articleRepository,
         _bookmarkRepository = bookmarkRepository,
         super(LoadingBookmarkArticle());
 
@@ -34,41 +34,44 @@ class BookmarkArticleBloc
     }
   }
 
-  Stream<BookmarkArticleState> mapFetchInitialArticleStateToState(
-      {Article article}) async* {
-    yield LoadingBookmarkArticle(articleID: article.id);
+  Stream<BookmarkArticleState> mapFetchInitialArticleStateToState({
+    required Article article,
+  }) async* {
+    yield LoadingBookmarkArticle(articleID: article.id!);
     final bool _isBookmarked =
-        _bookmarkRepository.isArticleBookmarked(articleID: article.id);
+        _bookmarkRepository.isArticleBookmarked(articleID: article.id!);
     yield BookmarkArticleResult(
-        articleID: article.id, isBookmarked: _isBookmarked);
+        articleID: article.id!, isBookmarked: _isBookmarked);
   }
 
-  Stream<BookmarkArticleState> mapAddBookmarkArticle({Article article}) async* {
-    yield LoadingBookmarkArticle(articleID: article.id);
+  Stream<BookmarkArticleState> mapAddBookmarkArticle(
+      {required Article article}) async* {
+    yield LoadingBookmarkArticle(articleID: article.id!);
     try {
       ArticleDetail _articleDetail =
-          await _articleRepository.fetchArticleDetail(slug: article.slug);
+          await _articleRepository.fetchArticleDetail(slug: article.slug!);
       _bookmarkRepository.addBookmarkedArticleDetail(
           articleDetail: _articleDetail);
       _bookmarkRepository.addBookmarkArticle(article: article);
-      yield BookmarkArticleResult(articleID: article.id, isBookmarked: true);
+      yield BookmarkArticleResult(articleID: article.id!, isBookmarked: true);
     } catch (e) {
-      yield BookmarkArticleResult(articleID: article.id, isBookmarked: false);
+      yield BookmarkArticleResult(articleID: article.id!, isBookmarked: false);
     }
   }
 
-  Stream<BookmarkArticleState> mapRemoveBookmarkedArticleToState(
-      {Article article}) async* {
-    yield LoadingBookmarkArticle(articleID: article.id);
+  Stream<BookmarkArticleState> mapRemoveBookmarkedArticleToState({
+    required Article article,
+  }) async* {
+    yield LoadingBookmarkArticle(articleID: article.id!);
     try {
       _bookmarkRepository.removeBookmarkedArticle(article: article);
-      yield BookmarkArticleResult(articleID: article.id, isBookmarked: false);
+      yield BookmarkArticleResult(articleID: article.id!, isBookmarked: false);
     } catch (e) {
-      yield BookmarkArticleResult(articleID: article.id, isBookmarked: true);
+      yield BookmarkArticleResult(articleID: article.id!, isBookmarked: true);
     }
   }
 
-  ArticleDetail getBookmarkedArticleDetail({String articleID}) {
+  ArticleDetail getBookmarkedArticleDetail({required String articleID}) {
     return _bookmarkRepository.getBookmarkedArticleDetail(articleID: articleID);
   }
 

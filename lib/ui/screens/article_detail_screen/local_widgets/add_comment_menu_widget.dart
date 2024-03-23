@@ -6,7 +6,7 @@ import './add_comment_field_widget.dart';
 
 class AddCommentMenu extends StatelessWidget {
   final String articleID;
-  AddCommentMenu({this.articleID});
+  AddCommentMenu({required this.articleID});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,15 @@ class AddCommentMenu extends StatelessWidget {
           child: Row(children: [
             AccountImage(
               size: 40,
-              displayName: state.user.displayName,
-              userHasImage: state.user.photoURL != null ? true : false,
-              imagePath: state.user.photoURL,
+              displayName: state.user!.displayName!,
+              userHasImage: state.user!.photoURL != null ? true : false,
+              imagePath: state.user!.photoURL!,
               heroTag: 'account_add_message_image',
               fontSize: 16,
             ),
             AddCommentField(
               articleID: articleID,
-              currentUser: state.user,
+              currentUser: state.user!,
             ),
           ]),
         );

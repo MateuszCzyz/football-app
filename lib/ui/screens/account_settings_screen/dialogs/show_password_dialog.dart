@@ -5,7 +5,7 @@ import 'package:FootballApp/blocs/account_detail_input_bloc/account_detail_input
 import 'package:FootballApp/blocs/account_detail_bloc/account_detail_bloc.dart';
 import 'package:FootballApp/ui/screens/account_settings_screen/local_widgets/password_input.dart';
 
-void showPasswordDialog({BuildContext context}) {
+void showPasswordDialog({required BuildContext context}) {
   final AccountDetailInputBloc _accountDetailInputBloc = AccountDetailInputBloc(
       accountDetailBloc: BlocProvider.of<AccountDetailBloc>(context));
 

@@ -8,10 +8,11 @@ class EmailLoginInput extends StatelessWidget {
   final LoginFormValidationBloc loginFormValidationBloc;
   final FocusNode emailFocusNode;
 
-  EmailLoginInput(
-      {this.emailTextEditingController,
-      this.loginFormValidationBloc,
-      this.emailFocusNode});
+  EmailLoginInput({
+    required this.emailTextEditingController,
+    required this.loginFormValidationBloc,
+    required this.emailFocusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class EmailLoginInput extends StatelessWidget {
                 labelStyle: GoogleFonts.nunito(),
                 labelText: 'Email',
                 contentPadding: EdgeInsets.all(10),
-                errorText: snapshot.data,
+                errorText: snapshot.data as String?,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(3),
                 )),

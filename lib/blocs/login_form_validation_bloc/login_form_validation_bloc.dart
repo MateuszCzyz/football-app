@@ -5,13 +5,13 @@ import 'package:rxdart/rxdart.dart';
 class LoginFormValidationBloc {
   final FormRepository formRepository = FormRepository();
   final LoginBloc loginBloc;
-  BehaviorSubject<String> _emailErrorStream;
-  BehaviorSubject<String> _passwordErrorStream;
-  BehaviorSubject<String> _emailValueStream;
-  BehaviorSubject<String> _passwordValueStream;
-  BehaviorSubject<bool> _loginFormValidationStream;
+  late BehaviorSubject<String> _emailErrorStream;
+  late BehaviorSubject<String> _passwordErrorStream;
+  late BehaviorSubject<String> _emailValueStream;
+  late BehaviorSubject<String> _passwordValueStream;
+  late BehaviorSubject<bool> _loginFormValidationStream;
 
-  LoginFormValidationBloc({this.loginBloc}) {
+  LoginFormValidationBloc({required this.loginBloc}) {
     _emailErrorStream = BehaviorSubject<String>();
     _passwordErrorStream = BehaviorSubject<String>();
     _emailValueStream = BehaviorSubject<String>();
@@ -50,9 +50,9 @@ class LoginFormValidationBloc {
   }
 
   clearForm() {
-    setEmailValue(null);
-    setPasswordValue(null);
-    _emailErrorStream.add(null);
-    _passwordErrorStream.add(null);
+    setEmailValue('');
+    setPasswordValue('');
+    _emailErrorStream.add('');
+    _passwordErrorStream.add('');
   }
 }

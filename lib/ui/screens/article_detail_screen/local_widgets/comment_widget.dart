@@ -14,15 +14,16 @@ class CommentWidget extends StatelessWidget {
   final int index;
   String userName;
 
-  CommentWidget(
-      {this.userName,
-      this.commentMessage,
-      this.userHasImage,
-      this.imagePath,
-      this.date,
-      this.index,
-      this.theCurrentUserComment,
-      this.commentID}) {
+  CommentWidget({
+    required this.userName,
+    required this.commentMessage,
+    required this.userHasImage,
+    required this.imagePath,
+    required this.date,
+    required this.index,
+    required this.theCurrentUserComment,
+    required this.commentID,
+  }) {
     if (userName.length > 20) userName = userName.substring(0, 20) + '...';
   }
 
@@ -68,7 +69,7 @@ class CommentWidget extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 15)),
                     Text(
-                      _calucatedTime['date'],
+                      _calucatedTime['date']!,
                       style: TextStyle(fontSize: 11, color: Colors.black45),
                     )
                   ],
@@ -86,7 +87,7 @@ class CommentWidget extends StatelessWidget {
       ),
       onSelected: (commentID) async {
         await RepositoryProvider.of<ArticleRepository>(context)
-            .removeCommentFromArticle(commentID: commentID);
+            .removeCommentFromArticle(commentID: commentID as String);
       },
     );
   }

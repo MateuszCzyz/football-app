@@ -12,8 +12,8 @@ class LeaguesList extends StatefulWidget {
 }
 
 class _LeaguesListState extends State<LeaguesList> {
-  VideoBloc _videoBloc;
-  StreamController<String> _getcurrentSelectedLeagueStream;
+  late VideoBloc _videoBloc;
+  late StreamController<String> _getcurrentSelectedLeagueStream;
 
   @override
   void initState() {

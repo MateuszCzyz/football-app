@@ -10,14 +10,14 @@ abstract class AccountDetailState extends Equatable {
 class AccountDetailInitial extends AccountDetailState {}
 
 class SuccessUpdatedAccountData extends AccountDetailState {
-  final User currentUser;
+  final User? currentUser;
   SuccessUpdatedAccountData({this.currentUser});
 }
 
 class FailureUpdatedAccountData extends AccountDetailState {
   final String errorMessage;
 
-  FailureUpdatedAccountData({this.errorMessage});
+  FailureUpdatedAccountData({required this.errorMessage});
 }
 
 class LoadingAccountData extends AccountDetailState {}

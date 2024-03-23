@@ -14,8 +14,10 @@ part 'article_detail_state.dart';
 class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
   final ArticleRepository articleRepository;
   final UsersRepository usersRepository;
-  ArticleDetailBloc({this.articleRepository, this.usersRepository})
-      : super(ArticleDetailInitial());
+  ArticleDetailBloc({
+    required this.articleRepository,
+    required this.usersRepository,
+  }) : super(ArticleDetailInitial());
 
   @override
   Stream<ArticleDetailState> mapEventToState(
@@ -31,14 +33,15 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
   }
 
   get getUsersList => usersRepository.getUsersList();
-  getUserData({List<FirestoreUser> users, String userID}) =>
+  getUserData({required List<FirestoreUser> users, required String userID}) =>
       usersRepository.getUserData(users: users, userID: userID);
 }
 
-Stream<ArticleDetailState> fetchDetailToState(
-    {ArticleRepository articleRepository,
-    String slug,
-    String articleID}) async* {
+Stream<ArticleDetailState> fetchDetailToState({
+  required ArticleRepository articleRepository,
+  required String slug,
+  required String articleID,
+}) async* {
   try {
     ArticleDetail articleDetail =
         await articleRepository.fetchArticleDetail(slug: slug);

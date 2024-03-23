@@ -1,7 +1,7 @@
 class ArticleDetail {
-  String id;
-  String author;
-  List<dynamic> content;
+  String? id;
+  String? author;
+  List<dynamic>? content;
 
   ArticleDetail({this.author, this.content, this.id});
 
@@ -12,6 +12,10 @@ class ArticleDetail {
   }
 
   Map<dynamic, dynamic> toMap() {
-    return {'id': this.id, 'author': this.author, 'content': this.content};
+    return {
+      'id': this.id,
+      'author': this.author,
+      'content': this.content,
+    };
   }
 }

@@ -9,13 +9,13 @@ import 'dart:async';
 class SliderWidget extends StatefulWidget {
   final List<Article> articles;
 
-  SliderWidget({this.articles});
+  SliderWidget({required this.articles});
   @override
   _SliderState createState() => _SliderState();
 }
 
 class _SliderState extends State<SliderWidget> {
-  StreamController _streamController;
+  late StreamController _streamController;
   List<Widget> currentSliderPositions =
       List.generate(5, (index) => Container(width: 10, height: 10));
 

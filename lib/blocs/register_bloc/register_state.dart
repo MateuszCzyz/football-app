@@ -16,5 +16,5 @@ class SuccessRegistration extends RegisterState {}
 class FailureRegistration extends RegisterState {
   final String errorMessage;
 
-  FailureRegistration({this.errorMessage});
+  FailureRegistration({required this.errorMessage});
 }

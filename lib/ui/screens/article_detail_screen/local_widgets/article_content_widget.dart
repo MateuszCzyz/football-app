@@ -8,7 +8,11 @@ class ArticleContent extends StatelessWidget {
   final List<dynamic> articleList;
   final int numberOfLines;
 
-  ArticleContent({this.title, this.articleList, this.numberOfLines});
+  ArticleContent({
+    required this.title,
+    required this.articleList,
+    required this.numberOfLines,
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,9 +26,10 @@ class ArticleContent extends StatelessWidget {
           return Html(
               data: index == 0
                   ? ('<h2>' + title + '</h2><br><br>' + paragraph)
-                  : paragraph,
-              renderNewlines: false,
-              defaultTextStyle: GoogleFonts.roboto(fontSize: 16));
+                  : paragraph
+              // renderNewlines: false,
+              // defaultTextStyle: GoogleFonts.roboto(fontSize: 16),
+              );
         },
         itemCount: (numberOfLines - 1),
       ),

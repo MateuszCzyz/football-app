@@ -7,7 +7,7 @@ import 'single_setting.dart';
 class AccountSettingsSection extends StatelessWidget {
   final User user;
 
-  AccountSettingsSection({this.user});
+  AccountSettingsSection({required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class AccountSettingsSection extends StatelessWidget {
 class ImageSettingsSection extends StatelessWidget {
   final User user;
 
-  ImageSettingsSection({this.user});
+  ImageSettingsSection({required this.user});
 
   @override
   Widget build(BuildContext context) {

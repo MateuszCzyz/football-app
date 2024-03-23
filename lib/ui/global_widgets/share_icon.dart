@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:share/share.dart';
+// import 'package:share/share.dart';
 
 class ShareIcon extends StatefulWidget {
   final String shareTitle;
   final String shareURL;
   final Color iconColor;
 
-  ShareIcon({this.shareURL, this.shareTitle, this.iconColor});
+  ShareIcon(
+      {required this.shareURL,
+      required this.shareTitle,
+      required this.iconColor});
   @override
   _ShareIconState createState() => _ShareIconState();
 }
 
 class _ShareIconState extends State<ShareIcon>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _animation;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
   bool _absorbIcon = false;
 
   @override
@@ -62,10 +65,10 @@ class _ShareIconState extends State<ShareIcon>
   }
 
   Future<void> _iconFunction() async {
-    _animationController.forward();
-    await Share.share(widget.shareURL, subject: widget.shareTitle);
-    setState(() {
-      _absorbIcon = true;
-    });
+    // _animationController.forward();
+    // await Share.share(widget.shareURL, subject: widget.shareTitle);
+    // setState(() {
+    //   _absorbIcon = true;
+    // });
   }
 }

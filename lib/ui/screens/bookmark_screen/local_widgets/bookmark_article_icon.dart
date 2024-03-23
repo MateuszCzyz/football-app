@@ -9,8 +9,12 @@ class BookmarkArticleIcon extends StatefulWidget {
   final Article article;
   final ValueKey key;
 
-  BookmarkArticleIcon({this.iconColor, this.iconSize, this.article, this.key})
-      : super(key: key);
+  BookmarkArticleIcon({
+    required this.iconColor,
+    required this.iconSize,
+    required this.article,
+    required this.key,
+  }) : super(key: key);
 
   @override
   _AnimatedBookmarkArticleIconState createState() =>
@@ -27,8 +31,9 @@ class _AnimatedBookmarkArticleIconState extends State<BookmarkArticleIcon> {
           size: widget.iconSize,
         ),
         onTap: () {
-          BlocProvider.of<BookmarkArticleBloc>(context)
-              .add(RemoveBookmarkedArticle(article: widget.article));
+          BlocProvider.of<BookmarkArticleBloc>(context).add(
+            RemoveBookmarkedArticle(article: widget.article),
+          );
         });
   }
 }

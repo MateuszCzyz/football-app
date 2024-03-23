@@ -5,7 +5,7 @@ class Nickname extends FormzInput<String, String> {
   const Nickname.dirty([String value = '']) : super.dirty(value);
 
   @override
-  String validator(String value) {
+  String? validator(String value) {
     if (value.isNotEmpty) {
       if (value.length >= 6) {
         return null;

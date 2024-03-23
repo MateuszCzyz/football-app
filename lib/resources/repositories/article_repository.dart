@@ -10,11 +10,11 @@ class ArticleRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final Uuid _uuid = Uuid();
 
-  Future<List<Article>> fetchArticleData({int page}) async {
+  Future<List<Article>> fetchArticleData({required int page}) async {
     List<Article> _articles = [];
     Response<Map> articleList =
         await _articleProvider.fetchArticleList(page: page);
-    for (Map data in articleList.data['data']) {
+    for (Map data in articleList.data!['data']) {
       _articles.add(Article(
           id: data['id'],
           title: data['title'],
@@ -26,10 +26,10 @@ class ArticleRepository {
     return _articles;
   }
 
-  Future<ArticleDetail> fetchArticleDetail({String slug}) async {
+  Future<ArticleDetail> fetchArticleDetail({required String slug}) async {
     Response<Map> articleDetail =
         await _articleProvider.fetchArticleDetail(slug: slug);
-    final data = articleDetail.data['data'];
+    final data = articleDetail.data!['data'];
     return ArticleDetail(
       id: data['id'],
       author: data['author'],
@@ -37,7 +37,7 @@ class ArticleRepository {
     );
   }
 
-  Stream<QuerySnapshot> getCommentsSnapshot({String articleID}) {
+  Stream<QuerySnapshot> getCommentsSnapshot({required String articleID}) {
     return _firestore
         .collection('comments')
         .orderBy('date')
@@ -45,14 +45,15 @@ class ArticleRepository {
         .snapshots();
   }
 
-  Future<void> addCommentToArticle(
-      {String commentMessage,
-      String date,
-      String articleID,
-      String userID,
-      String imagePath,
-      bool userHasImage,
-      String userName}) async {
+  Future<void> addCommentToArticle({
+    required String commentMessage,
+    required String date,
+    required String articleID,
+    required String userID,
+    String? imagePath,
+    bool? userHasImage,
+    String? userName,
+  }) async {
     await _firestore.collection('comments').add({
       'content': commentMessage,
       'date': date,
@@ -62,7 +63,7 @@ class ArticleRepository {
     });
   }
 
-  Future<void> removeCommentFromArticle({String commentID}) async {
+  Future<void> removeCommentFromArticle({required String commentID}) async {
     QuerySnapshot _querySnapshot = await _firestore
         .collection('comments')
         .where('id_comment', isEqualTo: commentID)
@@ -74,7 +75,7 @@ class ArticleRepository {
         .delete();
   }
 
-  Future<void> removeAllUserComments({String userID}) async {
+  Future<void> removeAllUserComments({required String userID}) async {
     await _firestore
         .collection('comments')
         .where('id_user', isEqualTo: userID)

@@ -11,7 +11,8 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final AuthenticationRepository _authenticationRepository;
 
-  AuthenticationBloc({AuthenticationRepository authenticationRepository})
+  AuthenticationBloc(
+      {required AuthenticationRepository authenticationRepository})
       : _authenticationRepository = authenticationRepository,
         super(AuthenticationStarted());
 
@@ -50,5 +51,5 @@ class AuthenticationBloc
     yield LoadingAuthentication();
   }
 
-  User getCurrentUser() => _authenticationRepository.getCurrentUser();
+  User? getCurrentUser() => _authenticationRepository.getCurrentUser();
 }

@@ -5,7 +5,10 @@ class CustomErrorWidget extends StatelessWidget {
   final String title;
   final String description;
 
-  CustomErrorWidget({this.title, this.description});
+  CustomErrorWidget({
+    required this.title,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {

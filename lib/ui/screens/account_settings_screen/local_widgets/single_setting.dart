@@ -5,7 +5,11 @@ class SingleSetting extends StatelessWidget {
   final bool isEnabled;
   final Function settingFunction;
 
-  SingleSetting({this.label, this.isEnabled, this.settingFunction});
+  SingleSetting({
+    required this.label,
+    required this.isEnabled,
+    required this.settingFunction,
+  });
 
   @override
   Widget build(BuildContext context) {

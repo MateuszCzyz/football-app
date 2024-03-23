@@ -18,10 +18,10 @@ class VideoRepository {
     'CHAMPIONS LEAGUE'
   ];
 
-  Future<List<Video>> fetchVideos({String selectedLeague}) async {
+  Future<List<Video>> fetchVideos({required String selectedLeague}) async {
     List<Video> videosList = [];
     Response<List<dynamic>> videos = await _videoApiProvider.fetchVideos();
-    videos.data.forEach((video) async {
+    videos.data!.forEach((video) async {
       bool isCorrectLeague = (selectedLeague == 'ALL LEAGUES')
           ? (leagues.contains(video['competition']['name'].split(':')[0]))
           : (video['competition']['name'].split(':')[0] == selectedLeague);

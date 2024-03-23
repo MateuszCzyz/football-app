@@ -10,8 +10,12 @@ class SendMessageIcon extends StatefulWidget {
   final String articleID;
   final User currentUser;
 
-  SendMessageIcon(
-      {this.commentMessage, this.articleID, this.focusNode, this.currentUser});
+  SendMessageIcon({
+    required this.commentMessage,
+    required this.articleID,
+    required this.focusNode,
+    required this.currentUser,
+  });
 
   @override
   State<SendMessageIcon> createState() => _SendMessageIconState();
@@ -19,8 +23,8 @@ class SendMessageIcon extends StatefulWidget {
 
 class _SendMessageIconState extends State<SendMessageIcon>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _animation;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
   bool _absorbIcon = false;
 
   @override
@@ -83,13 +87,14 @@ class _SendMessageIconState extends State<SendMessageIcon>
   }
 }
 
-void sendCommentToArticle(
-    {TextEditingController textEditingController,
-    BuildContext context,
-    FocusNode focusNode,
-    String commentMessage,
-    String articleID,
-    String userID}) {
+void sendCommentToArticle({
+  required TextEditingController textEditingController,
+  required BuildContext context,
+  required FocusNode focusNode,
+  required String commentMessage,
+  required String articleID,
+  required String userID,
+}) {
   if (commentMessage.isNotEmpty) {
     RepositoryProvider.of<ArticleRepository>(context).addCommentToArticle(
         commentMessage: commentMessage,

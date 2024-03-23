@@ -12,7 +12,11 @@ class ArticleDetail extends StatelessWidget {
   final String date;
   final String articleID;
 
-  ArticleDetail({this.date, this.title, this.articleID});
+  ArticleDetail({
+    required this.date,
+    required this.title,
+    required this.articleID,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +26,12 @@ class ArticleDetail extends StatelessWidget {
           return SliverList(
               delegate: SliverChildListDelegate([
             ArticleContent(
-              articleList: state.articleDetail.content,
-              numberOfLines: state.articleDetail.content.length,
+              articleList: state.articleDetail.content!,
+              numberOfLines: state.articleDetail.content!.length,
               title: title,
             ),
             AdditionalInformation(
-              author: state.articleDetail.author,
+              author: state.articleDetail.author!,
               date: date,
             ),
             Padding(

@@ -5,7 +5,10 @@ class Header extends StatelessWidget {
   final String label;
   final double horizontalPadding;
 
-  Header({this.label, this.horizontalPadding});
+  Header({
+    required this.label,
+    required this.horizontalPadding,
+  });
 
   @override
   Widget build(BuildContext context) {

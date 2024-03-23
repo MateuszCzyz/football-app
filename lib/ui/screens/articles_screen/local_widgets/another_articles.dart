@@ -7,13 +7,13 @@ import 'package:FootballApp/ui/screens/articles_screen/local_widgets/small_singl
 class AnotherArticles extends StatefulWidget {
   final List<Article> initialArticles;
 
-  AnotherArticles({this.initialArticles});
+  AnotherArticles({required this.initialArticles});
   @override
   _AnotherArticlesState createState() => _AnotherArticlesState();
 }
 
 class _AnotherArticlesState extends State<AnotherArticles> {
-  List<Article> _articles;
+  late List<Article> _articles;
 
   @override
   void initState() {

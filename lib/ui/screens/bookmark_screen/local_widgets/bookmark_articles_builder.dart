@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:FootballApp/blocs/bookmark_article_bloc/bookmark_article_bloc.dart';
 import 'bookmarked_article.dart';
@@ -25,7 +24,7 @@ class BookmarkArticlesBuilder extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return BookmarkedArticle(
                     article: Article.fromMap(
-                      box.getAt(index),
+                      (box as Box).getAt(index),
                     ),
                   );
                 },

@@ -10,15 +10,17 @@ class LogoutDrawerButton extends StatelessWidget {
       width: 250,
       child: Padding(
         padding: EdgeInsets.all(15),
-        child: RaisedButton(
-          shape: OutlineInputBorder(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: HexColor('898989'),
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide.none),
+            ),
+          ),
           onPressed: () {
             BlocProvider.of<AuthenticationBloc>(context)
                 .add(LogoutAuthentication());
           },
-          color: HexColor('898989'),
           child: Text(
             'Sign Out',
             style: TextStyle(color: Colors.white),

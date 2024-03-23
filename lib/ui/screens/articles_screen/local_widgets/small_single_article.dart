@@ -12,7 +12,7 @@ import 'package:FootballApp/ui/screens/article_detail_screen/article_detail_scre
 class LittleArticle extends StatelessWidget {
   final Article article;
 
-  LittleArticle({this.article});
+  LittleArticle({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class LittleArticle extends StatelessWidget {
 class ArticleData extends StatelessWidget {
   final Article article;
 
-  ArticleData({this.article});
+  ArticleData({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class ArticleData extends StatelessWidget {
 class ArticleImage extends StatelessWidget {
   final Article article;
 
-  ArticleImage({this.article});
+  ArticleImage({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class ArticleImage extends StatelessWidget {
             image: DecorationImage(
                 fit: BoxFit.fitHeight,
                 image: CachedNetworkImageProvider(
-                  article.image,
+                  article.image!,
                 ))),
       ),
     );
@@ -99,7 +99,7 @@ class MainInformation extends StatelessWidget {
   final Article article;
   final Map<String, String> articleTime;
 
-  MainInformation({this.article})
+  MainInformation({required this.article})
       : articleTime = calculateTime(date: article.date);
 
   @override
@@ -109,12 +109,12 @@ class MainInformation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TimeWidget(
-            timeSincePublished: articleTime['timeSincePublished'],
+            timeSincePublished: articleTime['timeSincePublished']!,
             color: '888888',
           ),
           SizedBox(height: 10),
           AutoSizeText(
-            article.title,
+            article.title!,
             maxLines: 3,
             style: Theme.of(context).textTheme.bodyText1,
           )
@@ -128,7 +128,7 @@ class BottomInformation extends StatelessWidget {
   final Article article;
   final Map<String, String> articleTime;
 
-  BottomInformation({this.article})
+  BottomInformation({required this.article})
       : articleTime = calculateTime(date: article.date);
 
   @override
@@ -140,10 +140,10 @@ class BottomInformation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              articleTime['date'],
+              articleTime['date']!,
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1
+                  .bodyText1!
                   .copyWith(color: HexColor('373737'), fontSize: 12),
             ),
             AnimatedBookmarkArticleIcon(

@@ -11,12 +11,13 @@ class CreateAccountButton extends StatelessWidget {
   final FocusNode emailFocusNode;
   final FocusNode passwordFocusNode;
 
-  CreateAccountButton(
-      {this.loginFormValidationBloc,
-      this.emailTextEditingController,
-      this.passwordTextEditingController,
-      this.emailFocusNode,
-      this.passwordFocusNode});
+  CreateAccountButton({
+    required this.loginFormValidationBloc,
+    required this.emailTextEditingController,
+    required this.passwordTextEditingController,
+    required this.emailFocusNode,
+    required this.passwordFocusNode,
+  });
 
   @override
   Widget build(BuildContext context) {

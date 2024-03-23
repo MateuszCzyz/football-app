@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import '../local_widgets/submit_button.dart';
 
-void showEmailDialog({BuildContext context}) {
+void showEmailDialog({required BuildContext context}) {
   final AccountDetailInputBloc _accountDetailInputBloc = AccountDetailInputBloc(
       accountDetailBloc: BlocProvider.of<AccountDetailBloc>(context));
 

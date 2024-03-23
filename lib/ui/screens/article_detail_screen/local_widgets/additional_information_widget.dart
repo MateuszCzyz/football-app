@@ -5,7 +5,10 @@ class AdditionalInformation extends StatelessWidget {
   final String author;
   final String date;
 
-  AdditionalInformation({this.author, this.date});
+  AdditionalInformation({
+    required this.author,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class AdditionalInformation extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Text(author), Text(_articleTime['date'])],
+        children: [Text(author), Text(_articleTime['date']!)],
       ),
     );
   }

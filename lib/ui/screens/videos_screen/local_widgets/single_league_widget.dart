@@ -11,11 +11,12 @@ class SingleLeagueWidget extends StatelessWidget {
   final String imagePath;
   final bool isActive;
 
-  SingleLeagueWidget(
-      {this.leagueLabel,
-      this.imagePath,
-      this.isActive,
-      this.getcurrentSelectedLeagueStream});
+  SingleLeagueWidget({
+    required this.leagueLabel,
+    required this.imagePath,
+    required this.isActive,
+    required this.getcurrentSelectedLeagueStream,
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -11,5 +11,5 @@ class CreateNewAccount extends RegisterEvent {
   final String email;
   final String password;
 
-  CreateNewAccount({this.email, this.password});
+  CreateNewAccount({required this.email, required this.password});
 }

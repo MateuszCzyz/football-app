@@ -8,62 +8,92 @@ class AuthenticationRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final ImageProvider _imageProvider = ImageProvider();
 
-  Future<void> signInWithEmailAndPassword(
-      {String email, String password}) async {
-    return await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+  Future<void> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    await _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
   Future<void> signInWithGoogle() async {
-    GoogleSignInAccount _googleSignInAccount = await _googleSignIn.signIn();
-    GoogleSignInAuthentication _googleSignInAuth =
-        await _googleSignInAccount.authentication;
-    AuthCredential _authCredential = GoogleAuthProvider.credential(
-        idToken: _googleSignInAuth.idToken,
-        accessToken: _googleSignInAuth.accessToken);
-    await _firebaseAuth.signInWithCredential(_authCredential);
+    GoogleSignInAccount? _googleSignInAccount = await _googleSignIn.signIn();
+    if (_googleSignInAccount != null) {
+      GoogleSignInAuthentication _googleSignInAuth =
+          await _googleSignInAccount.authentication;
+      AuthCredential _authCredential = GoogleAuthProvider.credential(
+          idToken: _googleSignInAuth.idToken,
+          accessToken: _googleSignInAuth.accessToken);
+      await _firebaseAuth.signInWithCredential(_authCredential);
+    }
   }
 
-  Future<void> createUserWithEmailAndPassoword(
-      {String email, String password}) async {
-    return await _firebaseAuth.createUserWithEmailAndPassword(
+  Future<void> createUserWithEmailAndPassoword({
+    required String email,
+    required String password,
+  }) async {
+    await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
   }
 
-  Future<void> updateUserName({String displayName}) async {
-    return await _firebaseAuth.currentUser.updateDisplayName(displayName);
+  Future<void> updateUserName({required String displayName}) async {
+    if (_firebaseAuth.currentUser != null) {
+      await _firebaseAuth.currentUser!.updateDisplayName(displayName);
+    }
   }
 
-  Future<void> updateUserEmail({String email}) async {
-    return await _firebaseAuth.currentUser.updateEmail(email);
+  Future<void> updateUserEmail({required String email}) async {
+    if (_firebaseAuth.currentUser != null) {
+      return await _firebaseAuth.currentUser!.updateEmail(email);
+    }
   }
 
-  Future<void> updateUserPassword({String password}) async {
-    return await _firebaseAuth.currentUser.updatePassword(password);
+  Future<void> updateUserPassword({required String password}) async {
+    if (_firebaseAuth.currentUser != null) {
+      await _firebaseAuth.currentUser!.updatePassword(password);
+    }
   }
 
   Future<void> setUserPhotoByCamera() async {
-    String _userID = getCurrentUser().uid;
-    PickedFile _pickedFile = await _imageProvider.getCameraPhoto();
-    await _imageProvider.uploadImage(imageFile: _pickedFile, userID: _userID);
-    String photoURL = await _imageProvider.getUserPhotoUrl(userID: _userID);
-    await _firebaseAuth.currentUser.updatePhotoURL(photoURL);
+    final currentUser = getCurrentUser();
+    if (currentUser != null) {
+      final photo = await _imageProvider.getCameraPhoto();
+      await _imageProvider.uploadImage(
+          imageFile: photo!, userID: currentUser.uid);
+      final photoUrl =
+          await _imageProvider.getUserPhotoUrl(userID: currentUser.uid);
+      if (_firebaseAuth.currentUser != null) {
+        await _firebaseAuth.currentUser!.updatePhotoURL(photoUrl);
+      }
+    }
   }
 
   Future<void> setUserPhotoByGallery() async {
-    String _userID = getCurrentUser().uid;
-    PickedFile _pickedFile = await _imageProvider.getGalleryPhoto();
-    await _imageProvider.uploadImage(imageFile: _pickedFile, userID: _userID);
-    String photoURL = await _imageProvider.getUserPhotoUrl(userID: _userID);
-    await _firebaseAuth.currentUser.updatePhotoURL(photoURL);
+    final currentUser = getCurrentUser();
+    if (currentUser != null) {
+      String _userID = currentUser.uid;
+      PickedFile? _pickedFile = await _imageProvider.getGalleryPhoto();
+      if (_pickedFile != null) {
+        await _imageProvider.uploadImage(
+            imageFile: _pickedFile, userID: _userID);
+        String photoURL = await _imageProvider.getUserPhotoUrl(userID: _userID);
+        if (_firebaseAuth.currentUser != null) {
+          await _firebaseAuth.currentUser!.updatePhotoURL(photoURL);
+        }
+      }
+    }
   }
 
   Future<void> removeUserPhoto() async {
-    User _user = getCurrentUser();
-    await _user.updatePhotoURL(null);
+    User? _user = getCurrentUser();
+    if (_user != null) {
+      await _user.updatePhotoURL(null);
+    }
   }
 
-  User getCurrentUser() {
+  User? getCurrentUser() {
     return _firebaseAuth.currentUser;
   }
 
@@ -72,15 +102,21 @@ class AuthenticationRepository {
   }
 
   Future<void> reloadAccount() async {
-    return await _firebaseAuth.currentUser.reload();
+    if (_firebaseAuth.currentUser != null) {
+      await _firebaseAuth.currentUser!.reload();
+    }
   }
 
   Future<void> signOut() async {
-    return await Future.wait(
-        [_firebaseAuth.signOut(), _googleSignIn.signOut()]);
+    await Future.wait([
+      _firebaseAuth.signOut(),
+      _googleSignIn.signOut(),
+    ]);
   }
 
   Future<void> deleteAccount() async {
-    return await _firebaseAuth.currentUser.delete();
+    if (_firebaseAuth.currentUser != null) {
+      return await _firebaseAuth.currentUser!.delete();
+    }
   }
 }

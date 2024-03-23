@@ -13,11 +13,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthenticationBloc _authenticationBloc;
   final AuthenticationRepository _authenticationRepository;
   final UsersRepository _usersRepository;
-  LoginBloc(
-      {AuthenticationBloc authenticationBloc,
-      AuthenticationRepository authenticationRepository,
-      UsersRepository usersRepository})
-      : _authenticationBloc = authenticationBloc,
+  LoginBloc({
+    required AuthenticationBloc authenticationBloc,
+    required AuthenticationRepository authenticationRepository,
+    required UsersRepository usersRepository,
+  })  : _authenticationBloc = authenticationBloc,
         _authenticationRepository = authenticationRepository,
         _usersRepository = usersRepository,
         super(LoginInitial());
@@ -36,8 +36,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-  Stream<LoginState> mapSignInWithEmailAndPasswordToState(
-      {String email, String password}) async* {
+  Stream<LoginState> mapSignInWithEmailAndPasswordToState({
+    required String email,
+    required String password,
+  }) async* {
     try {
       await _authenticationRepository.signInWithEmailAndPassword(
           email: email, password: password);
@@ -52,19 +54,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapSignInWithGoogleToState() async* {
     try {
       await _authenticationRepository.signInWithGoogle();
-      User _currentUser = _authenticationBloc.getCurrentUser();
-      if (!await _usersRepository.userExists(userID: _currentUser.uid)) {
-        await _usersRepository.createUser(
-            userID: _currentUser.uid, userName: _currentUser.displayName);
-        if (_currentUser.photoURL != null) {
-          await _authenticationRepository.removeUserPhoto();
+      User? _currentUser = _authenticationBloc.getCurrentUser();
+      if (_currentUser != null) {
+        if (!await _usersRepository.userExists(userID: _currentUser.uid)) {
+          await _usersRepository.createUser(
+              userID: _currentUser.uid, userName: _currentUser.displayName!);
+          if (_currentUser.photoURL != null) {
+            await _authenticationRepository.removeUserPhoto();
+          }
         }
+        _authenticationBloc.add(LoggedInAuthentication());
+        yield LoginSuccess();
       }
-      _authenticationBloc.add(LoggedInAuthentication());
-      yield LoginSuccess();
     } catch (e) {
-      String _errorMessage = getErrorMessage(e.code);
-      yield LoginFailure(errorMessage: _errorMessage);
+      yield LoginFailure(
+        errorMessage: getErrorMessage((e as Map)['code']),
+      );
     }
   }
 }

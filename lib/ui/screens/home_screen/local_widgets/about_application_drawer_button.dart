@@ -19,10 +19,10 @@ class AboutApplicationDrawerButton extends StatelessWidget {
             SizedBox(width: 5),
             Text(
               'About application',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  .copyWith(fontSize: 15, color: HexColor('666666')),
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    fontSize: 15,
+                    color: HexColor('666666'),
+                  ),
             )
           ],
         ),

@@ -5,7 +5,10 @@ class ImageHero extends StatelessWidget {
   final String imagePath;
   final String heroTag;
 
-  ImageHero({@required this.heroTag, @required this.imagePath});
+  ImageHero({
+    required this.heroTag,
+    required this.imagePath,
+  });
 
   @override
   Widget build(BuildContext context) {

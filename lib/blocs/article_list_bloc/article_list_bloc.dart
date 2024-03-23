@@ -10,7 +10,7 @@ part 'article_list_state.dart';
 class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
   final ArticleRepository articleRepository;
   int page = 1;
-  ArticleListBloc({this.articleRepository}) : super(ArticleInitial());
+  ArticleListBloc({required this.articleRepository}) : super(ArticleInitial());
 
   @override
   Stream<ArticleListState> mapEventToState(
@@ -25,8 +25,9 @@ class ArticleListBloc extends Bloc<ArticleListEvent, ArticleListState> {
   }
 }
 
-Stream<ArticleListState> fetchFirstPageToState(
-    {ArticleRepository articleRepository}) async* {
+Stream<ArticleListState> fetchFirstPageToState({
+  required ArticleRepository articleRepository,
+}) async* {
   try {
     List<Article> _articles = await articleRepository.fetchArticleData(page: 1);
     yield SuccessFetchedFirstPage(articles: List.from(_articles));
@@ -35,8 +36,10 @@ Stream<ArticleListState> fetchFirstPageToState(
   }
 }
 
-Stream<ArticleListState> fetchNextPageToState(
-    {ArticleRepository articleRepository, int page}) async* {
+Stream<ArticleListState> fetchNextPageToState({
+  required ArticleRepository articleRepository,
+  required int page,
+}) async* {
   try {
     List<Article> _articles =
         await articleRepository.fetchArticleData(page: page);

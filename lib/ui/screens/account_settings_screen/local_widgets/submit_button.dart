@@ -5,7 +5,10 @@ class SubmitButton extends StatelessWidget {
   final String label;
   final void Function() buttonFucntion;
 
-  SubmitButton({this.label, this.buttonFucntion});
+  SubmitButton({
+    required this.label,
+    required this.buttonFucntion,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class SubmitButton extends StatelessWidget {
       padding: EdgeInsets.only(top: 15),
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: HexColor('6798B4'),
+            backgroundColor: HexColor('6798B4'),
           ),
           child: Container(
             width: double.infinity,

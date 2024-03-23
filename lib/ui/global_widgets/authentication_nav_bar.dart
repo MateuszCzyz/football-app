@@ -6,7 +6,10 @@ class AuthenticationNavBar extends StatelessWidget {
   final String title;
   final String description;
 
-  AuthenticationNavBar({this.title, this.description});
+  AuthenticationNavBar({
+    required this.title,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {

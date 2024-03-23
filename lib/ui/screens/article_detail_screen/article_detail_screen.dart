@@ -1,7 +1,6 @@
 import 'package:FootballApp/resources/repositories/article_repository.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:FootballApp/ui/global_widgets/animated_bookmark_article_icon.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import '../../global_widgets/share_icon.dart';
@@ -13,7 +12,7 @@ import 'package:FootballApp/models/article.dart';
 class ArticleDetailScreen extends StatelessWidget {
   final Article article;
 
-  ArticleDetailScreen({this.article});
+  ArticleDetailScreen({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,9 @@ class ArticleDetailScreen extends StatelessWidget {
       create: (context) => ArticleDetailBloc(
         articleRepository: RepositoryProvider.of<ArticleRepository>(context),
         usersRepository: RepositoryProvider.of<UsersRepository>(context),
-      )..add(FetchDetail(slug: article.slug, articleID: article.id)),
+      )..add(
+          FetchDetail(slug: article.slug!, articleID: article.id!),
+        ),
       child: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -32,9 +33,9 @@ class ArticleDetailScreen extends StatelessWidget {
             flexibleSpace: _getFlexibleSpaceBar(),
           ),
           ArticleDetail(
-            date: article.date,
-            title: article.title,
-            articleID: article.id,
+            date: article.date!,
+            title: article.title!,
+            articleID: article.id!,
           )
         ],
       ),
@@ -50,8 +51,8 @@ class ArticleDetailScreen extends StatelessWidget {
             children: [
               ShareIcon(
                 iconColor: Colors.white,
-                shareTitle: article.title,
-                shareURL: article.url,
+                shareTitle: article.title!,
+                shareURL: article.url!,
               ),
               SizedBox(width: 3),
               AnimatedBookmarkArticleIcon(
@@ -71,7 +72,7 @@ class ArticleDetailScreen extends StatelessWidget {
             image: DecorationImage(
                 fit: BoxFit.fitHeight,
                 image: CachedNetworkImageProvider(
-                  article.image,
+                  article.image!,
                 ))),
       ),
     );

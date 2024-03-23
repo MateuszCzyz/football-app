@@ -11,9 +11,9 @@ import 'package:FootballApp/models/article.dart';
 
 class LargeArticle extends StatefulWidget {
   final Article article;
-  final Key key;
+  final Key? key;
 
-  LargeArticle({this.article, this.key}) : super(key: key);
+  LargeArticle({required this.article, this.key}) : super(key: key);
 
   @override
   State<LargeArticle> createState() => _LargeArticleState();
@@ -33,7 +33,7 @@ class _LargeArticleState extends State<LargeArticle> {
               ],
               image: DecorationImage(
                   fit: BoxFit.fitWidth,
-                  image: CachedNetworkImageProvider(widget.article.image)),
+                  image: CachedNetworkImageProvider(widget.article.image!)),
               borderRadius: BorderRadius.circular(5),
               color: Colors.grey),
           child: Column(
@@ -43,8 +43,8 @@ class _LargeArticleState extends State<LargeArticle> {
                 article: widget.article,
               ),
               ArticleInformation(
-                title: widget.article.title,
-                date: widget.article.date,
+                title: widget.article.title!,
+                date: widget.article.date!,
               )
             ],
           ),
@@ -64,7 +64,7 @@ class _LargeArticleState extends State<LargeArticle> {
 class ArticleIcons extends StatelessWidget {
   final Article article;
 
-  ArticleIcons({this.article});
+  ArticleIcons({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +74,8 @@ class ArticleIcons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           ShareIcon(
-            shareTitle: article.title,
-            shareURL: article.url,
+            shareTitle: article.title!,
+            shareURL: article.url!,
             iconColor: Colors.white,
           ),
           SizedBox(width: 5),
@@ -95,7 +95,7 @@ class ArticleInformation extends StatelessWidget {
   final String title;
   final String date;
 
-  ArticleInformation({this.date, this.title});
+  ArticleInformation({required this.date, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class ArticleInformation extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(5),
               child: Text(
-                articleTime['timeSincePublished'],
+                articleTime['timeSincePublished']!,
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -128,7 +128,7 @@ class ArticleInformation extends StatelessWidget {
               style: GoogleFonts.roboto(color: Colors.white, fontSize: 17),
             ),
             SizedBox(height: 7),
-            Text(articleTime['date'],
+            Text(articleTime['date']!,
                 style: GoogleFonts.roboto(color: HexColor('D7D7D7')))
           ],
         ),

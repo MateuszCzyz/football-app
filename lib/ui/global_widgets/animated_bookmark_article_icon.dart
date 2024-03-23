@@ -7,11 +7,14 @@ class AnimatedBookmarkArticleIcon extends StatefulWidget {
   final Color iconColor;
   final double iconSize;
   final Article article;
-  final ValueKey key;
+  final ValueKey? key;
 
-  AnimatedBookmarkArticleIcon(
-      {this.iconColor, this.iconSize, this.article, this.key})
-      : super(key: key);
+  AnimatedBookmarkArticleIcon({
+    required this.iconColor,
+    required this.iconSize,
+    required this.article,
+    this.key,
+  }) : super(key: key);
 
   @override
   _AnimatedBookmarkArticleIconState createState() =>
@@ -20,8 +23,8 @@ class AnimatedBookmarkArticleIcon extends StatefulWidget {
 
 class _AnimatedBookmarkArticleIconState
     extends State<AnimatedBookmarkArticleIcon> with TickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _animation;
+  late AnimationController _animationController;
+  late Animation<double>? _animation;
 
   @override
   void initState() {
@@ -56,7 +59,7 @@ class _AnimatedBookmarkArticleIconState
               animation: _animationController,
               builder: (context, _) {
                 return Transform.scale(
-                  scale: _animation.value,
+                  scale: _animation != null ? _animation!.value : 0,
                   child: InkWell(
                       child: Icon(
                         (state.isBookmarked)
@@ -84,7 +87,7 @@ class _AnimatedBookmarkArticleIconState
             current.articleID == widget.article.id) ||
         (current is LoadingBookmarkArticle &&
             current.articleID == widget.article.id)) {
-      if (widget.key.value == widget.article.id) {
+      if (widget.key!.value == widget.article.id) {
         return true;
       } else {
         return false;
@@ -109,7 +112,7 @@ class _AnimatedBookmarkArticleIconState
 class LoadingWidget extends StatelessWidget {
   final Color iconColor;
 
-  LoadingWidget({this.iconColor});
+  LoadingWidget({required this.iconColor});
 
   @override
   Widget build(BuildContext context) {

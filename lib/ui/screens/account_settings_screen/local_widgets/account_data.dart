@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AccountData extends StatelessWidget {
   final User user;
 
-  AccountData({this.user});
+  AccountData({required this.user});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,9 +16,9 @@ class AccountData extends StatelessWidget {
             AccountImage(
               size: 60,
               heroTag: 'account_setting_image',
-              displayName: user.displayName,
+              displayName: user.displayName!,
               userHasImage: user.photoURL != null ? true : false,
-              imagePath: user.photoURL,
+              imagePath: user.photoURL!,
               fontSize: 20,
             ),
             Flexible(
@@ -26,12 +26,12 @@ class AccountData extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  user.displayName,
+                  user.displayName!,
                   style: GoogleFonts.nunito(fontSize: 16),
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  user.email,
+                  user.email!,
                   style: GoogleFonts.nunito(fontSize: 16),
                   overflow: TextOverflow.ellipsis,
                 )

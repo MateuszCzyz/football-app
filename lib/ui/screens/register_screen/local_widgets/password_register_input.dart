@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 class PasswordRegisterInput extends StatelessWidget {
   final RegisterFormValidationBloc registerFormValidationBloc;
 
-  PasswordRegisterInput({this.registerFormValidationBloc});
+  PasswordRegisterInput({required this.registerFormValidationBloc});
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ class SignInWithGoogleButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
-          primary: HexColor('F0F0F0'),
+          backgroundColor: HexColor('F0F0F0'),
           elevation: 0.5,
         ),
         child: Row(

@@ -8,25 +8,26 @@ class ImageProvider {
   ImagePicker _imagePicker = ImagePicker();
   FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
-  Future<PickedFile> getCameraPhoto() async {
+  Future<PickedFile?> getCameraPhoto() async {
     return _imagePicker.getImage(source: ImageSource.camera);
   }
 
-  Future<PickedFile> getGalleryPhoto() async {
+  Future<PickedFile?> getGalleryPhoto() async {
     return _imagePicker.getImage(source: ImageSource.gallery);
   }
 
-  Future<String> getUserPhotoUrl({String userID}) async {
+  Future<String> getUserPhotoUrl({required String userID}) async {
     String id = await _firebaseStorage.ref(userID).getDownloadURL();
     return id;
   }
 
-  Future<void> uploadImage({String userID, PickedFile imageFile}) async {
+  Future<void> uploadImage(
+      {required String userID, required PickedFile imageFile}) async {
     File _file = File(imageFile.path);
     await _firebaseStorage.ref().child(userID).putFile(_file);
   }
 
-  Future<void> removeImage({String userID}) async {
+  Future<void> removeImage({required String userID}) async {
     try {
       await _firebaseStorage.ref(userID).delete();
     } catch (e) {

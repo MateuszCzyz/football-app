@@ -4,6 +4,10 @@ class FirestoreUser {
   final String imagePath;
   final bool userHasImage;
 
-  FirestoreUser(
-      {this.userID, this.nickname, this.imagePath, this.userHasImage});
+  FirestoreUser({
+    required this.userID,
+    required this.nickname,
+    required this.imagePath,
+    required this.userHasImage,
+  });
 }

@@ -11,7 +11,7 @@ class VideoInitial extends VideoState {}
 
 class SuccessFetchedVideos extends VideoState {
   final List<Video> videos;
-  SuccessFetchedVideos({this.videos});
+  SuccessFetchedVideos({required this.videos});
 }
 
 class FailureFetchedVideos extends VideoState {}

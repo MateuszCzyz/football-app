@@ -16,7 +16,7 @@ class MyDrawer extends StatelessWidget {
         builder: (context, state) {
           if (state is SuccesAuthentication) {
             return SignedInDrawer(
-              currentUser: state.user,
+              currentUser: state.user!,
             );
           } else if (state is FailureAuthentication) {
             return SignedOutDrawer();
@@ -32,7 +32,7 @@ class MyDrawer extends StatelessWidget {
 class SignedInDrawer extends StatelessWidget {
   final User currentUser;
 
-  SignedInDrawer({this.currentUser});
+  SignedInDrawer({required this.currentUser});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class SignedOutDrawer extends StatelessWidget {
 class SignedInNavBar extends StatelessWidget {
   final User currentUser;
 
-  SignedInNavBar({this.currentUser});
+  SignedInNavBar({required this.currentUser});
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +80,9 @@ class SignedInNavBar extends StatelessWidget {
                 AccountImage(
                   heroTag: 'drawer_account_image',
                   size: 60,
-                  imagePath: currentUser.photoURL,
+                  imagePath: currentUser.photoURL!,
                   userHasImage: currentUser.photoURL != null ? true : false,
-                  displayName: currentUser.displayName,
+                  displayName: currentUser.displayName!,
                   fontSize: 20,
                 ),
                 Flexible(
@@ -90,13 +90,13 @@ class SignedInNavBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        currentUser.displayName,
+                        currentUser.displayName!,
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1
+                            .bodyText1!
                             .copyWith(fontSize: 15),
                       ),
-                      Text(currentUser.email,
+                      Text(currentUser.email!,
                           style: Theme.of(context).textTheme.bodyText1)
                     ],
                   ),
@@ -132,7 +132,7 @@ class SignedOutNavBar extends StatelessWidget {
 class SignedInBottomBar extends StatelessWidget {
   final User currentUser;
 
-  SignedInBottomBar({this.currentUser});
+  SignedInBottomBar({required this.currentUser});
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +156,7 @@ class SignedInBottomBar extends StatelessWidget {
 }
 
 class SignedOutBottomBar extends StatelessWidget {
-  final User currentUser;
+  final User? currentUser;
 
   SignedOutBottomBar({this.currentUser});
 

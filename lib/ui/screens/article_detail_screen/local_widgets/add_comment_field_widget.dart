@@ -7,15 +7,18 @@ class AddCommentField extends StatefulWidget {
   final String articleID;
   final User currentUser;
 
-  AddCommentField({this.articleID, this.currentUser});
+  AddCommentField({
+    required this.articleID,
+    required this.currentUser,
+  });
 
   @override
   State<AddCommentField> createState() => _AddCommentFieldState();
 }
 
 class _AddCommentFieldState extends State<AddCommentField> {
-  TextEditingController _commentMessage;
-  FocusNode _focusNode;
+  late TextEditingController _commentMessage;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
@@ -39,7 +42,8 @@ class _AddCommentFieldState extends State<AddCommentField> {
                 controller: _commentMessage,
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[300], width: 1.0),
+                    borderSide:
+                        BorderSide(color: Colors.grey[300]!, width: 1.0),
                   ),
                   hintText: 'Your comment',
                   filled: true,

@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 class PasswordInput extends StatelessWidget {
   final AccountDetailInputBloc accountDetailInputBloc;
 
-  PasswordInput({this.accountDetailInputBloc});
+  PasswordInput({required this.accountDetailInputBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class PasswordInput extends StatelessWidget {
                         BorderSide(color: HexColor('DDDDDD'), width: 1)),
                 labelStyle: GoogleFonts.nunito(),
                 labelText: 'Password',
-                errorText: snapshot.data,
+                errorText: snapshot.data as String?,
                 contentPadding: EdgeInsets.all(10),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(3),

@@ -13,7 +13,10 @@ class SuccessFetchedDetail extends ArticleDetailState {
   final ArticleDetail articleDetail;
   final Stream<QuerySnapshot> commentsSnapshot;
 
-  SuccessFetchedDetail({this.articleDetail, this.commentsSnapshot});
+  SuccessFetchedDetail({
+    required this.articleDetail,
+    required this.commentsSnapshot,
+  });
 }
 
 class FailureFetchedDetail extends ArticleDetailState {}

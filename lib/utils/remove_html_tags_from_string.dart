@@ -1,4 +1,4 @@
-String removeHtmlTagsFromStrings({String content}) {
+String removeHtmlTagsFromStrings({String? content}) {
   if (content == null)
     return '';
   else if (content.indexOf('<p>') > -1) {

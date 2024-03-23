@@ -12,7 +12,7 @@ import 'dart:io';
 class BookmarkedArticle extends StatefulWidget {
   final Article article;
 
-  BookmarkedArticle({this.article, Key key}) : super(key: key);
+  BookmarkedArticle({required this.article, Key? key}) : super(key: key);
 
   @override
   State<BookmarkedArticle> createState() => _BookmarkedArticleState();
@@ -46,9 +46,13 @@ class _BookmarkedArticleState extends State<BookmarkedArticle> {
               flex: 4,
               child: Container(
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: FileImage(File(widget.article.image)))),
+                  image: DecorationImage(
+                    fit: BoxFit.fitHeight,
+                    image: FileImage(
+                      File(widget.article.image!),
+                    ),
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -64,12 +68,12 @@ class _BookmarkedArticleState extends State<BookmarkedArticle> {
                             children: [
                               TimeWidget(
                                 timeSincePublished:
-                                    articleTime['timeSincePublished'],
+                                    articleTime['timeSincePublished']!,
                                 color: '888888',
                               ),
                               SizedBox(height: 10),
                               AutoSizeText(
-                                widget.article.title,
+                                widget.article.title!,
                                 maxLines: 3,
                                 style: Theme.of(context).textTheme.bodyText1,
                               )
@@ -83,10 +87,10 @@ class _BookmarkedArticleState extends State<BookmarkedArticle> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  articleTime['date'],
+                                  articleTime['date']!,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1
+                                      .bodyText1!
                                       .copyWith(
                                           color: HexColor('373737'),
                                           fontSize: 12),
